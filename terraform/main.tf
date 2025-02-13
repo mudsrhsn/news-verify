@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "newsverify" {
   location = var.location
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
@@ -32,7 +32,7 @@ resource "azurerm_storage_account" "state" {
   account_replication_type = "LRS"
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
@@ -50,7 +50,7 @@ resource "azurerm_app_service_plan" "newsverify" {
   }
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
@@ -72,7 +72,7 @@ resource "azurerm_cosmosdb_account" "newsverify" {
   }
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
@@ -93,7 +93,7 @@ resource "azurerm_function_app" "newsverify" {
   ]
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
@@ -106,7 +106,7 @@ resource "azurerm_application_insights" "newsverify" {
   application_type    = "web"
 
   tags = {
-    environment = "production"
+    environment = "development"
     project     = "NewsVerify"
   }
 }
