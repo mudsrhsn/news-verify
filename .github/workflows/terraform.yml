@@ -29,21 +29,27 @@ jobs:
 
       - name: 'Terraform Init'
         run: terraform init
+        working-directory: ./terraform
 
       - name: 'Terraform Validate'
         run: terraform validate
+        working-directory: ./terraform
 
       - name: 'Terraform Plan'
         run: terraform plan
+        working-directory: ./terraform
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
+        working-directory: ./terraform
 
       - name: 'Save state'
         if: github.ref == 'refs/heads/main'
         run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_STATE
+        working-directory: ./terraform
 
       - name: 'Set output'
         if: github.ref == 'refs/heads/main'
-        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_OUTPUT
+        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_ENV
+        working-directory: ./terraform
