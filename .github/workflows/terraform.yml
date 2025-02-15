@@ -46,10 +46,5 @@ jobs:
 
       - name: 'Save state'
         if: github.ref == 'refs/heads/main'
-        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_STATE
-        working-directory: ./terraform
-
-      - name: 'Set output'
-        if: github.ref == 'refs/heads/main'
         run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_ENV
         working-directory: ./terraform
