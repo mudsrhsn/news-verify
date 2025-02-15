@@ -39,3 +39,7 @@ jobs:
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
+
+      - name: 'Set Output'
+        if: github.ref == 'refs/heads/main'
+        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_ENV
