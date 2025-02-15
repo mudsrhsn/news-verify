@@ -40,6 +40,10 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
 
-      - name: 'Set Output'
+      - name: 'Save state'
         if: github.ref == 'refs/heads/main'
-        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_ENV
+        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_STATE
+
+      - name: 'Set output'
+        if: github.ref == 'refs/heads/main'
+        run: echo "output_name=$(terraform output -json | jq -r '.output_name.value')" >> $GITHUB_OUTPUT
